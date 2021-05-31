@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-bind</title>
+  <style>
+    .title {
+      background-color: salmon;
+    }
+
+    .active {
+      color: red;
+    }
+
+    .line {
+      font-size: large;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 对象方式动态绑定class，固定的class用title -->
+    <h2 class="title" v-bind:class='{active:isActive,line:isLine}'>hello</h2>
+    <h2 class="title" v-bind:class='getClass()'>hello</h2>
+    <!-- 数组方式动态绑定class，固定的class用title -->
+    <h2 class="title" v-bind:class='[aaa,bbb]'>hello</h2>
+    <button @click="toggle">切换颜色</button>
+    <!-- 动态绑定style，对象方式 -->
+    <h2 :style='{fontSize:"50px"}'>hi</h2>
+    <h2 :style='{fontSize:fontsize1}'>hi</h2>
+    <h2 :style='{fontSize:fontsize2 + "px"}'>hi</h2>
+    <!-- 动态绑定style，数组方式 -->
+    <h2 :style='[font,backcolor]'>hi</h2>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isActive: true,
+        isLine: true,
+        aaa: 'active',
+        bbb: 'title',
+        fontsize1: '50px',
+        fontsize2: 50,
+        font:{fontSize:'50px'},
+        backcolor:{backgroundColor:'red'}
+      },
+      methods: {
+        toggle: function () {
+          this.isActive = !this.isActive;
+        },
+        getClass: function () {
+          return { active: this.isActive, line: this.isLine }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
