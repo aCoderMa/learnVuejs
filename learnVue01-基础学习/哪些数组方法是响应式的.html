@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组方法是否响应式</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2 v-for='item in letters'>{{item}}</h2>
+    <button @click='btnClick'>按钮</button>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        letters: ['a', 'b', 'c', 'd']
+      },
+      methods: {
+        btnClick() {
+          /* 响应式 */
+          //push
+          //this.letters.push('e','ff');
+          //pop
+          //this.letters.pop();
+          //shift
+          //this.letters.shift();
+          //unshift
+          //this.letters.unshift('aaa');
+          //splice
+          //直接修改
+          //sort数组排序
+          //reverse数组反转
+
+          /* 非响应式 */
+          //this.letters[0] = 'bbbb'
+          //使用set修改，做到响应式
+          //Vue.set(this.letters,0,'bbb')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

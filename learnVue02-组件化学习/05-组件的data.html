@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的分离写法</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 为什么组件的data是函数形式？因为组件可以被复用，每个复用互不影响 -->
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <template id='cpn'>
+    <div>
+      <h2>当前计数：{{num}}</h2>
+      <button @click='increment'>+</button>
+      <button @click='decrement'>-</button>
+    </div>
+  </template>
+  <script src="../vue.js"></script>
+  <script>
+    const cpnC = Vue.extend({
+      template: '#cpn',
+      data(){
+        return{
+          num:1
+        }
+      },
+      methods:{
+        increment(){
+          this.num++
+        },
+        decrement(){
+          this.num--
+        }
+      }
+    });
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello',
+      },
+      components: {
+        cpn: cpnC
+      }
+    })
+  </script>
+</body>
+
+</html>

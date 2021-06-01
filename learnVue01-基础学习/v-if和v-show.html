@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>if和show</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 只有一次切换使用v-if，频繁切换使用v-show，v-show只是加了display：none，v-if直接删除了 -->
+    <h2 v-if='isShow'>hello</h2>
+    <h2 v-show='isShow'>hello</h2>
+    <button @click='btnClick'>按钮</button>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+      },
+      methods:{
+        btnClick(){
+          this.isShow =!this.isShow
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
