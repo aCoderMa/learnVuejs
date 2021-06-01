@@ -29,6 +29,8 @@
     <img v-bind:src="imgURL" alt="">
     <!-- 语法糖 -->
     <img :src="imgURL" alt="">
+    <!-- 过滤器filters -->
+    <h2>{{price|price2}}</h2>
   </div>
   <script src="../vue.js"></script>
   <script>
@@ -41,11 +43,18 @@
         message: '你好啊!!!',
         name: 'kobe',
         url: '<a href="http://www.baidu.com">百度一下</a>',
-        imgURL: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+        imgURL: 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+        price:3.255
       },
       methods: {
         sub: function () {
           this.counter1--
+        }
+      },
+      //过滤器
+      filters:{
+        price2(price){
+          return '¥'+price.toFixed(2);
         }
       }
     })
