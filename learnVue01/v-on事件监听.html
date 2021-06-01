@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2 @click='btnClick()'>按钮</h2>
+    <h2 @click='btnClick'>按钮</h2>
+    <h2 @click='btnClick1(1)'>按钮1</h2>
+    <h2 @click='btnClick1()'>按钮1</h2>
+    <!-- 传入event对象 -->
+    <h2 @click='btnClick1'>按钮1</h2>
+    <!-- 传入event对象,使用$event -->
+    <h2 @click='btnClick2("hello",$event)'>按钮2</h2>
+    <h2 @click='btnClick2'>按钮2</h2>
+    <!-- 发生事件冒泡 -->
+    <div @click='divClick'>
+      <button @click='buttonClick'>按钮3</button>
+    </div>
+    <!-- 阻止事件冒泡.stop修饰符 -->
+    <div @click='divClick'>
+      <button @click.stop='buttonClick'>按钮3</button>
+    </div>
+    <!-- 监听键盘 -->
+    <input type="text" @keyup='keyUp'>
+    <input type="text" @keyup.enter='enter'>
+    <!-- 只执行一次 -->
+    <div>
+      <button @click.once='btnClick3'>按钮4</button>
+    </div>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+        btnClick() {
+          console.log('btnClick');
+        },
+        btnClick1(abc) {
+          console.log(abc)
+        },
+        btnClick2(abc, def) {
+          console.log(abc, def)
+        },
+        divClick() {
+          console.log('btnCdivClicklick');
+        },
+        buttonClick() {
+          console.log('buttonClick');
+        },
+        keyUp(){
+          console.log('keyup');
+        },
+        enter(){
+          console.log('enter');
+        },
+        btnClick3(){
+          console.log('该函数只有第一次点击被调用!');
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 遍历数组 -->
+    <ul>
+      <li v-for='item in names'>{{item}}</li>
+    </ul>
+    <ul>
+      <li v-for='(item,index) in names'>{{index+1}},{{item}}</li>
+    </ul>
+    <!-- 遍历对象 -->
+    <ul>
+      <li v-for='item in info'>{{item}}</li>
+    </ul>
+    <ul>
+      <li v-for='(value,key) in info'>{{key}},{{value}}</li>
+    </ul>
+    <ul>
+      <li v-for='(value,key,index) in info'>{{index+1}},{{key}},{{value}}</li>
+    </ul>
+    <!-- 完美使用方式：v-for遍历对象且加上key复用，key值用item有区分度，不要用index，key -->
+    <ul>
+      <li v-for='item in info' :key='item'>{{item}}</li>
+    </ul>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        names: ['Kobe', 'James'],
+        info: {
+          name: 'Kobe',
+          age: 18
+        }
+      },
+      methods: {
+        btnClick() {
+          this.isShow = !this.isShow
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
