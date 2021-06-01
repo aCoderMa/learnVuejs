@@ -1,0 +1,30 @@
+<!-- 
+num = [1,2,300,400]
+let i in
+let i of
+return true则取值，returnfalse则不取
+let newNum1 = num.filter(function(n){
+  return n < 100
+}) 
+变化数组
+let newNum2 = num.map(function(n){
+  return n*2
+})
+第一次prevalue = m，之后为每一次ruturn的值，若m=0则为求和
+let total = num.reduce(function(prevalue,item){
+  return prevalue + item
+},m)
+
+一步搞定：
+取小于100的值，乘以2，求和。
+let total = num.filter(function(n){
+  return n < 100
+}).map(function(n){
+  return n*2
+}).reduce(function(prevalue,item){
+  return prevalue + item
+},0)
+
+箭头函数一行搞定：
+let total = num.filter(n=>n < 100}).map(n=>n*2).reduce((prevalue,item)=>prevalue + item)
+  -->
