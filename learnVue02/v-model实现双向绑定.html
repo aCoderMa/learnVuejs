@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-model -->
+    <input type="text" v-model='message'>{{message}}
+    <!-- v-model的实质 -->
+    <input type="text" :value='message' @input='message = $event.target.value'>{{message}}
+    <!-- v-model绑定radio,保证name一样就只能单选,若加上v-model可以不给name属性 -->
+    <label for="male">
+      <input type="radio" id="male" name="sex" value="男" v-model='sex'>男
+    </label>
+    <label for="female">
+      <input type="radio" id="female" name="sex" value="女" v-model='sex'>女
+    </label>
+    <h2>你选择的性别是：{{sex}}</h2>
+    <!-- v-model结合checkbox单选框 -->
+    <label for="agree">
+      <input type="checkbox" id="agree" v-model='isAgree'>同意
+    </label>
+    <h2>你选择的是：{{isAgree}}</h2>
+    <button :disabled='!isAgree'>下一步</button><br>
+    <!-- v-model结合checkbox多选框 -->
+    <input type="checkbox" value="篮球" v-model='hobbies'>篮球
+    <input type="checkbox" value="羽毛球" v-model='hobbies'>羽毛球
+    <input type="checkbox" value="乒乓球" v-model='hobbies'>乒乓球
+    <input type="checkbox" value="网球" v-model='hobbies'>网球
+    <h2>你选择的爱好是：{{hobbies}}</h2>
+    <!-- v-model结合select单选 -->
+    <select name="fruit" v-model='fruit'>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="橘子">橘子</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <h2>你选择的水果是：{{fruit}}</h2>
+    <!-- v-model结合select多选,按住crtl键 -->
+    <select name="fruits" v-model='fruits' multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="橘子">橘子</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <h2>你选择的水果是：{{fruits}}</h2>
+    <!-- input中的值绑定 -->
+    <label v-for='item in originCountries' :for="item">
+      <input type="checkbox" :value='item' :id="item" v-model='countries'>{{item}}
+    </label>
+    <h2>你选择的国家是：{{countries}}</h2>
+    <!-- v-model的修饰符 -->
+    <!-- lazy失去焦点才更新 -->
+    <input type="text" v-model.lazy='message'>{{message}}
+    <!-- input默认输入的都是字符串，number修饰符转换为数字, -->
+    <input type="number" v-model='age'>{{age}}
+    <input type="number" v-model.number='age'>{{age}}
+    <h2>{{age}}-{{typeof age}}</h2>
+    <!-- trim修饰符，去除输入的空格 -->
+    <input type="text" v-model.trim='name'>
+    <h2>你输入的是{{name}}</h2>
+
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello',
+        sex: '男',
+        isAgree: false,
+        hobbies: [],
+        fruit: '苹果',
+        fruits: [],
+        originCountries: ['America', 'China'],
+        countries: [],
+        age:0,
+        name:''
+      },
+      methods: {
+        btnClick(index) {
+          this.currentIndex = index
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
