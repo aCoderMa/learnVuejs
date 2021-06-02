@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn><button>按钮</button></cpn>
+    <cpn><i>hi</i></cpn>
+    <cpn><span>hello</span></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>我是子组件</h1>
+      <div>我是子组件的内容</div>
+      <!-- 设置默认有按钮,或者不设置默认值，为空 -->
+      <slot><button>按钮</button></slot>
+    </div>
+  </template>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn: {
+          template: '#cpn',
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

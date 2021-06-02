@@ -5,16 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>组件的分离写法</title>
+  <title>父传子</title>
 </head>
 
 <body>
   <div id="app">
-    <cpn :cmovies='movies' :cmessage='message'></cpn>
+    <!-- 当props中使用驼峰命名v-bind使用“-”连接 -->
+    <cpn :cmovies='movies' :c-message='message'></cpn>
   </div>
   <template id='cpn'>
     <div>
-      <h2>{{cmessage}}</h2>
+      <h2>{{cMessage}}</h2>
       <ul>
         <li v-for='item in cmovies'>{{item}}</li>
       </ul>
@@ -24,14 +25,16 @@
   <script>
     const cpnC = Vue.extend({
       template: '#cpn',
-      //props:['cmovies','cmessage'],
+      //方法一：props:['cmovies','cmessage'],
       props:{
+        //方法二：
         //cmovies:Array,
         //cmessage:String
-        cmessage:{
+        //方法三：
+        cMessage:{
           type:String,
           default:'aaa',
-          //必须传，负责报错
+          //必须传，否则报错
           required:true
         },
         cmovies:{

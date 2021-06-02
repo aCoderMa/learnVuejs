@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn>
+      <!-- 作用域插槽的作用，父组件对子组件的数据展示形式不满意，父组件将子组件数据获取后，以另一种方式展示 -->
+      <!-- 低版本必须使用template标签，高版本可以任意 -->
+      <template slot-scope='slot'>
+        <span>{{slot.abc.join(' - ')}}</span>
+      </template> 
+    </cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <!-- 使用插槽传递数据 -->
+      <slot :abc='pLanguage'>
+        <ul>
+          <li v-for='item in pLanguage'>{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              pLanguage: ['c++','c#']
+            }
+          }
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

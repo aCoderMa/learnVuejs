@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父访问子</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn ref='aaa'></cpn>
+    <button @click='btnClick'>按钮</button>
+  </div>
+  <template id="cpn">
+    <div>
+      我是子组件
+    </div>
+  </template>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              name: '我是子组件的数据'
+            }
+          },
+          methods: {
+            showMessage() {
+              console.log('我是子组件的方法');
+            }
+          },
+        }
+      },
+      methods:{
+        btnClick(){
+          //不建议使用的方法，组件顺序变化数组下标就不对了：$children是一个数组，存放每一个子组件
+          //console.log(this.$children);
+          this.$children[0].showMessage();
+          console.log(this.$children[0].name);
+          //建议使用的方法：$refs,用ref属性区分组件
+          //console.log(this.$refs)
+          this.$refs.aaa.showMessage();
+          console.log(this.$refs.aaa.name);
+
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
